@@ -4,6 +4,7 @@ import TotalDisplay from "./components/TotalDisplay";
 import CalcButton from "./components/CalcButton";
 import reducer from "./reducers";
 import { initialState } from "./reducers";
+import { addOne } from "./actions";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -19,7 +20,7 @@ function App() {
       <div className="container row mt-5">
         <div className="col-md-12 d-flex justify-content-center">
           <form name="Cal">
-            <TotalDisplay value={state.operation} />
+            <TotalDisplay value={state.total} />
             <div className="row details">
               <span id="operation">
                 <b>Operation:</b> {state.operation}
@@ -36,7 +37,7 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={1} />
+              <CalcButton value={1} onClick={() => dispatch(addOne())} />
               <CalcButton value={2} />
               <CalcButton value={3} />
             </div>
