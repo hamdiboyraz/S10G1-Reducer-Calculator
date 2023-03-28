@@ -1,12 +1,4 @@
-import {
-  ADD_MEMORY,
-  ADD_ONE,
-  APPLY_NUMBER,
-  CHANGE_OPERATION,
-  CLEAR_DISPLAY,
-  CLEAR_MEMORY,
-  RECALL_MEMORY,
-} from "./../actions";
+import { ActionTypes } from "../actions/actions";
 
 export const initialState = {
   total: 0,
@@ -33,44 +25,44 @@ const calculateResult = (num1, num2, operation) => {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case ADD_ONE:
+    case ActionTypes.ADD_ONE:
       return {
         ...state,
         total: state.total + 1,
       };
 
-    case APPLY_NUMBER:
+    case ActionTypes.APPLY_NUMBER:
       return {
         ...state,
         total: calculateResult(state.total, action.payload, state.operation),
       };
 
-    case CHANGE_OPERATION:
+    case ActionTypes.CHANGE_OPERATION:
       return {
         ...state,
         operation: action.payload,
       };
 
-    case CLEAR_DISPLAY:
+    case ActionTypes.CLEAR_DISPLAY:
       return {
         ...state,
         total: initialState.total,
         operation: initialState.operation,
       };
 
-    case ADD_MEMORY:
+    case ActionTypes.ADD_MEMORY:
       return {
         ...state,
         memory: state.total,
       };
 
-    case RECALL_MEMORY:
+    case ActionTypes.RECALL_MEMORY:
       return {
         ...state,
         total: calculateResult(state.total, state.memory, state.operation),
       };
 
-    case CLEAR_MEMORY:
+    case ActionTypes.CLEAR_MEMORY:
       return {
         ...state,
         memory: initialState.memory,
